@@ -1,6 +1,5 @@
 $(document).ready(function(){
   console.log("READY, PLAYER ONE?");
-  var spotifyResponse = '';
   
   var settings = {
   "url": "https://api.spotify.com/v1/artists/2O8wUq3dZLFKCwylQnLo0g/albums",
@@ -9,8 +8,10 @@ $(document).ready(function(){
   
   $.ajax(settings).done(function (response) {
     console.log(response);
-    //Append results to DOM
-    $('#target').html(JSON.stringify(response));
+    
+    var albumArray = response.items;
+    albumArray.forEach(function(obj) {
+      $('#target').append('<li>'+obj.name+'</li>');
+    });  
   }); 
-  
 });
