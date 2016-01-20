@@ -10,8 +10,17 @@ $(document).ready(function(){
     console.log(response);
     
     var albumArray = response.items;
-    albumArray.forEach(function(obj) {
-      $('#target').append('<li>'+obj.name+'</li>');
+    
+    var albumNameArray = albumArray.map(function(obj) {
+      return obj.name;
+    });      
+    
+    var filteredArray = albumNameArray.filter(function(str){
+      return str.search("Truth") === -1;
+    });
+      
+    filteredArray.forEach(function(str){
+      $('#target').append('<li>'+str+'</li>');
     });  
   }); 
 });
